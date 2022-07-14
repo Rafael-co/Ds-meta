@@ -1,4 +1,6 @@
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import NotificationButton from '../notification button'
 import './styles.css'
 function SalesCard() {
@@ -7,10 +9,20 @@ function SalesCard() {
             <h2 className="dsmeta-sales-title">Vendas</h2>
             <div>
                 <div className="dsmeta-form-control-container">
-                    <input className="dsmeta-form-control" type="text"/>
+                    <DatePicker
+                        selected={new Date()}
+                        onChange={(date: Date) => { }}
+                        className="dsmeta-form-control"
+                        dateFormat="dd/MM/yyyy"
+                    />
                 </div>
                 <div className="dsmeta-form-control-container">
-                    <input className="dsmeta-form-control" type="text"/>
+                    <DatePicker
+                        selected={new Date()}
+                        onChange={(date: Date) => { }}
+                        className="dsmeta-form-control"
+                        dateFormat="dd/MM/yyyy"
+                    />
                 </div>
             </div>
             <table className="dsmeta-sales-table">
@@ -36,10 +48,10 @@ function SalesCard() {
                         <td>R$900,00</td>
                         <td>
                             <div className="dsmeta-red-btn-container">
-                                <NotificationButton/>
-                                </div>
+                                <NotificationButton />
+                            </div>
 
-                            
+
 
                         </td>
                     </tr>
@@ -52,8 +64,8 @@ function SalesCard() {
                         <td>R$900,00</td>
                         <td>
                             <div className="dsmeta-red-btn-container">
-                            <NotificationButton/>
-                                
+                                <NotificationButton />
+
 
                             </div>
 
@@ -68,9 +80,9 @@ function SalesCard() {
                         <td>R$900,00 </td>
                         <td>
                             <div className="dsmeta-red-btn-container">
-                            <NotificationButton/>
-                        
-                            
+                                <NotificationButton />
+
+
 
                             </div>
 
@@ -99,7 +111,7 @@ function SalesCard() {
                         <td>R$900,00 </td>
                         <td>
                             <div className="dsmeta-red-btn-container">
-                            <NotificationButton/>
+                                <NotificationButton />
 
                             </div>
 
@@ -108,8 +120,8 @@ function SalesCard() {
                 </tbody>
             </table>
         </div>
-           
-  )
+
+    )
 }
 
 export default SalesCard
