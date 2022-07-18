@@ -3,35 +3,35 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Sale } from "../../models/sale";
+import { BASE_URL } from "../../utils/request";
 import NotificationButton from '../notification button'
 import './styles.css'
 
 
-function SalesCard() 
+function SalesCard() {
+    const date = new Date(new Date().setDate(new Date().getDate() - 365));
+    const max = new Date();
+    const [MinDate, setMinDate] = useState(new Date(date))
+    const [MaxDate, setMaxDate] = useState(new Date(max))
+    const [sales, setSales] = useState<Sale[]>([]);
+    useEffect(() => {
+        axios.get(`${BASE_URL}/sales`)
+            .then(Response => {
+                setSales(Response.data.content);
+            })
 
-{
-const date = new Date(new Date().setDate(new Date().getDate() - 365));
-const max = new Date();
-const [MinDate, setMinDate] = useState(new Date(date))
-const [MaxDate, setMaxDate] = useState(new Date(max))
-
-useEffect(()=>{
-axios.get("http://localhost:8080/sales")
-.then(Response =>{
-    console.log(Response.data);
-})
-
-},[]);
+    }, []);
 
     return (
-        
+
         <div className="dsmeta-card">
             <h2 className="dsmeta-sales-title">Vendas</h2>
             <div>
                 <div className="dsmeta-form-control-container">
                     <DatePicker
                         selected={MinDate}
-                     
+
                         onChange={(date: Date) => setMinDate(date)}
                         className="dsmeta-form-control"
                         dateFormat="dd/MM/yyyy"
@@ -40,7 +40,7 @@ axios.get("http://localhost:8080/sales")
                 <div className="dsmeta-form-control-container">
                     <DatePicker
                         selected={MaxDate}
-                        onChange={(date: Date) =>setMaxDate(date)}
+                        onChange={(date: Date) => setMaxDate(date)}
                         className="dsmeta-form-control"
                         dateFormat="dd/MM/yyyy"
                     />
@@ -60,84 +60,29 @@ axios.get("http://localhost:8080/sales")
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="show992">#375</td>
-                        <td className="show576">08/07/2022</td>
-                        <td>Jaqueline </td>
-                        <td className="show992">3</td>
-                        <td className="show992">0</td>
-                        <td>R$900,00</td>
-                        <td>
-                            <div className="dsmeta-red-btn-container">
-                                <NotificationButton />
-                            </div>
+                    {
+                        sales.map(sale => {
+                            return (
+                                <tr key={sale.id}>
+                                    <td className="show992">{sale.id}</td>
+                                    <td className="show576">{new Date(sale.date).toLocaleDateString()}</td>
+                                    <td>{sale.sellerName}</td>
+                                    <td className="show992">{sale.visited}</td>
+                                    <td className="show992">{sale.deals}</td>
+                                    <td>R$ {sale.amount.toFixed(2)}</td>
+                                    <td>
+                                        <div className="dsmeta-red-btn-container">
+                                            <NotificationButton />
+                                        </div>
 
 
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="show992">#45</td>
-                        <td className="show576">14/02/2022</td>
-                        <td>Peterson</td>
-                        <td className="show992">1</td>
-                        <td className="show992">5</td>
-                        <td>R$900,00</td>
-                        <td>
-                            <div className="dsmeta-red-btn-container">
-                                <NotificationButton />
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
 
-
-                            </div>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="show992">#5</td>
-                        <td className="show576">15/04/2022</td>
-                        <td>Gabriel </td>
-                        <td className="show992">1</td>
-                        <td className="show992">6</td>
-                        <td>R$900,00 </td>
-                        <td>
-                            <div className="dsmeta-red-btn-container">
-                                <NotificationButton />
-
-
-
-                            </div>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="show992">#17</td>
-                        <td className="show576">17/02/2022</td>
-                        <td>Ana paula </td>
-                        <td className="show992">14</td>
-                        <td className="show992">2</td>
-                        <td>R$900,00 </td>
-                        <td>
-                            <div className="dsmeta-red-btn-container">
-                                <NotificationButton />
-                            </div>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="show992">#95</td>
-                        <td className="show576">15/07/2022</td>
-                        <td>helio </td>
-                        <td className="show992">8</td>
-                        <td className="show992">7</td>
-                        <td>R$900,00 </td>
-                        <td>
-                            <div className="dsmeta-red-btn-container">
-                                <NotificationButton />
-
-                            </div>
-
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
