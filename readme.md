@@ -1,15 +1,20 @@
 # Semana Spring React (projeto full stack)
-Uma aplicação que exibe uma listagem de vendas, permitindo filtrá-las por data e enviar uma notificação por SMS com os dados de cada venda.
 
-Utilizamos HTML, CSS, JavaScript/TypeScript e a biblioteca React JS para fazer o Front-end e o Java, SQL(H2) e Spring Boot para o Back-end.
+Uma aplicaÃ§Ã£o que exibe uma listagem de vendas, permitindo filtrÃ¡-las por data e enviar uma notificaÃ§Ã£o por SMS com os dados de cada venda.
 
-## Conteúdo
-API REST com Java e Spring Boot
-Banco de dados com ORM
-Front-end com React JS
-Camadas, componentes, boas práticas
-Integração com SMS
-Implantação na nuvem com CI/CD
+Utilizamos HTML, CSS, JavaScript/TypeScript e a biblioteca React  JS para fazer o Front-end e o Java, SQL(H2) e Spring Boot para o Back-end.
+
+
+
+## ConteÃºdo
+
+- API REST com Java e Spring Boot
+- Banco de dados com ORM
+- Front-end com React JS
+- Camadas, componentes, boas prÃ¡ticas
+- IntegraÃ§Ã£o com SMS
+- ImplantaÃ§Ã£o na nuvem com CI/CD
+
 
 ## SMS
 
